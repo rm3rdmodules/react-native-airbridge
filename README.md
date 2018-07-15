@@ -34,16 +34,6 @@
       compile project(':react-native-airbridge')
     ```
 
-#### Windows
-
-[Read it! :D](https://github.com/ReactWindows/react-native)
-
-1.  In Visual Studio add the `RNAirBridge.sln` in `node_modules/react-native-airbridge/windows/RNAirBridge.sln` folder to their solution, reference from their app.
-2.  Open up your `MainPage.cs` app
-
-- Add `using Air.Bridge.RNAirBridge;` to the usings at the top of the file
-- Add `new RNAirBridgePackage()` to the `List<IReactPackage>` returned by the `Packages` method
-
 ## Usage
 
 ```javascript
