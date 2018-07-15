@@ -1,0 +1,74 @@
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.facebook.react:react-native:+'
+    compile 'io.airbridge:sdk-android:1.3.+'
+    compile 'com.android.installreferrer:installreferrer:1.0'
+}
+
+
+// rootProject.gradle.buildFinished { buildResult ->
+//   if (buildResult.getFailure() != null) {
+//     try {
+//       String message = buildResult.getFailure().properties.get("reportableCauses").toString()
+//       if (message.contains("com.android.dex.DexException: Multiple dex files define Lcom/google/") ||
+//         message.contains("java.util.zip.ZipException: duplicate entry: com/google/android/gms/")) {
+//         logger.log(LogLevel.ERROR, "")
+//         logger.log(LogLevel.ERROR, " -----------------------------------------------------------")
+//         logger.log(LogLevel.ERROR, "|                    REACT NATIVE AIRBRIDGE                 |")
+//         logger.log(LogLevel.ERROR, " ----------------------------------------------------------- ")
+//         logger.log(LogLevel.ERROR, "|                                                           |")
+//         logger.log(LogLevel.ERROR, "|  This is a common build error when using libraries that   |")
+//         logger.log(LogLevel.ERROR, "|  require google play services.                            |")
+//         logger.log(LogLevel.ERROR, "|                                                           |")
+//         logger.log(LogLevel.ERROR, "|  This error occurs because different versions of google   |")
+//         logger.log(LogLevel.ERROR, "|  play services or google play services modules are being  |")
+//         logger.log(LogLevel.ERROR, "|  required by different libraries.                         |")
+//         logger.log(LogLevel.ERROR, "|                                                           |")
+//         logger.log(LogLevel.ERROR, "|  A temporary fix would be to set:                         |")
+//         logger.log(LogLevel.ERROR, "|                                                           |")
+//         logger.log(LogLevel.ERROR, "|             android { multiDexEnabled true }              |")
+//         logger.log(LogLevel.ERROR, "|                                                           |")
+//         logger.log(LogLevel.ERROR, "|  inside your build gradle, however it is recommended for  |")
+//         logger.log(LogLevel.ERROR, "|  your prod build that you de-duplicate these to minimize  |")
+//         logger.log(LogLevel.ERROR, "|  bundle size.                                             |")
+//         logger.log(LogLevel.ERROR, "|                                                           |")
+//         logger.log(LogLevel.ERROR, "|  See http://invertase.link/dupe-dex for how to do this.   |")
+//         logger.log(LogLevel.ERROR, "|                                                           |")
+//         logger.log(LogLevel.ERROR, " ----------------------------------------------------------- ")
+//       }
+//     } catch (Exception exception) {
+//     }
+//   }
+// }
