@@ -111,9 +111,10 @@ RCT_EXPORT_METHOD(sendViewSearchResult:(NSString *)query products:(NSArray *)pro
     [ecommerceEvent sendViewSearchResult];
 }
 
-RCT_EXPORT_METHOD(sendAddProductToCart:(NSArray *)products)
+RCT_EXPORT_METHOD(sendAddProductToCart:(NSArray *)products params:(NSDictionary *)params)
 {
     ABEcommerceEvent *ecommerceEvent = [self getEcommerceEvent:products];
+    [self setEventProperties:ecommerceEvent params:params];
     [ecommerceEvent sendAddProductToCart];
 }
 
@@ -124,7 +125,7 @@ RCT_EXPORT_METHOD(sendCompleteOrder:(NSArray *)products params:(NSDictionary *)p
     [ecommerceEvent sendCompleteOrder];
 }
 
-RCT_EXPORT_METHOD(setCustomEvent:(NSString *)eventName action:(NSString *)action label:(NSString *)label value:(NSNumber *)value customAttributes:(NSDictionary *)customAttributes)
+RCT_EXPORT_METHOD(setCustomEvent:(NSString *)eventName action:(NSString *)action label:(NSString *)label value:(NSNumber *)value customAttributes:(NSDictionary *_Nullable)customAttributes)
 {
     [[AirBridge instance]
      goalWithCategory:eventName

@@ -90,7 +90,7 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void sendViewHome(ReadableMap params) {
+  public void sendViewHome() {
     HomeViewEvent event = new HomeViewEvent();
     AirBridge.getTracker().send(event);
   }

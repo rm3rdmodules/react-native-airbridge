@@ -4,6 +4,22 @@
 
 `$ npm install react-native-airbridge --save`
 
+### Make sure 'AirBridge' is in your ios/Podfile like below
+
+```
+target 'MyTestApp' do
+
+  pod 'AirBridge'
+
+end
+```
+
+### Pod install
+```
+$ cd ios/
+$ pod install
+```
+
 ### Mostly automatic installation
 
 `$ react-native link react-native-airbridge`
@@ -37,8 +53,35 @@
 ## Usage
 
 ```javascript
-import RNAirBridge from "react-native-airbridge";
+import AirBridge from "react-native-airbridge";
 
-// TODO: What to do with the module?
-RNAirBridge.init("appEngName", "appToken");
+    const products = [{
+      productId: 'prd-1',
+      name: '상품1',
+      price: 3000,
+      quantity: 1,
+      currency: 'KRW',
+      orderPosition: 1,
+    }, {
+      productId: 'prd-1',
+      name: '상품1',
+      price: 3000,
+      quantity: 1,
+      currency: 'KRW',
+      orderPosition: 1,
+    }];
+    AirBridge.init('your eng app name', 'airbridge token', false);
+    AirBridge.sendSignin('2jw0718', '2jw0718@gmail.com');
+    AirBridge.sendSignup('2jw0718', '2jw0718@gmail.com');
+    AirBridge.sendViewHome();
+    AirBridge.sendViewProductList('prd-list-id', products);
+    AirBridge.sendViewProductDetail(products);
+    AirBridge.sendViewSearchResult('search query', products);
+    AirBridge.sendAddProductToCart('cart_id', products, { totalValue: 3000, currency: 'KRW' });
+    AirBridge.sendCompleteOrder(products, {
+      isInAppPurchase: false,
+      transactionID: '123456789',
+      eventValue: 3000,
+      currency: 'KRW',
+    });
 ```
