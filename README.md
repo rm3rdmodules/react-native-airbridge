@@ -55,33 +55,33 @@ $ pod install
 ```javascript
 import AirBridge from "react-native-airbridge";
 
-    const products = [{
-      productId: 'prd-1',
-      name: '상품1',
-      price: 3000,
-      quantity: 1,
-      currency: 'KRW',
-      orderPosition: 1,
-    }, {
-      productId: 'prd-1',
-      name: '상품1',
-      price: 3000,
-      quantity: 1,
-      currency: 'KRW',
-      orderPosition: 1,
-    }];
-    AirBridge.init('your eng app name', 'airbridge token', false);
-    AirBridge.sendSignin('2jw0718', '2jw0718@gmail.com');
-    AirBridge.sendSignup('2jw0718', '2jw0718@gmail.com');
-    AirBridge.sendViewHome();
-    AirBridge.sendViewProductList('prd-list-id', products);
-    AirBridge.sendViewProductDetail(products);
-    AirBridge.sendViewSearchResult('search query', products);
-    AirBridge.sendAddProductToCart('cart_id', products, { totalValue: 3000, currency: 'KRW' });
-    AirBridge.sendCompleteOrder(products, {
-      isInAppPurchase: false,
-      transactionID: '123456789',
-      eventValue: 3000,
-      currency: 'KRW',
-    });
+const products = [{
+  productId: 'prd-1',
+  name: 'product-name1',
+  price: 3000,
+  quantity: 1,
+  currency: 'KRW',
+  orderPosition: 1,
+}, {
+  productId: 'prd-2',
+  name: 'product-name2',
+  price: 2000,
+  quantity: 3,
+  currency: 'KRW',
+  orderPosition: 2,
+}];
+AirBridge.init('your eng app name', 'airbridge token', false);
+AirBridge.sendSignin('2jw0718', '2jw0718@gmail.com');
+AirBridge.sendSignup('2jw0718', '2jw0718@gmail.com');
+AirBridge.sendViewHome();
+AirBridge.sendViewProductList('prd-list-id', products);
+AirBridge.sendViewProductDetail(products);
+AirBridge.sendViewSearchResult('search query', products);
+AirBridge.sendAddProductToCart('cart_id', products, { totalValue: 3000, currency: 'KRW' });
+AirBridge.sendCompleteOrder(products, {
+  isInAppPurchase: false,
+  transactionID: '123456789',
+  eventValue: 3000,
+  currency: 'KRW',
+});
 ```
