@@ -6,15 +6,28 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.ReadableType;
+
+// Youn can see  package names in sdk by "jar tf android/libs/sdk-android-1.3.0.jar"
 import io.airbridge.AirBridge;
 import io.airbridge.statistics.events.inapp.SignUpEvent;
 import io.airbridge.statistics.events.inapp.SignInEvent;
 import io.airbridge.statistics.events.GoalEvent;
 import io.airbridge.ecommerce.HomeViewEvent;
+import io.airbridge.ecommerce.AddedToCartEvent;
+import io.airbridge.ecommerce.HomeViewEvent;
+import io.airbridge.ecommerce.Product;
+import io.airbridge.ecommerce.ProductDetailsViewEvent;
+import io.airbridge.ecommerce.ProductListViewEvent;
+import io.airbridge.ecommerce.PurchaseEvent;
+import io.airbridge.ecommerce.SearchResultViewEvent;
+
 import java.lang.reflect.Method;
 import android.util.Log;
+import java.util.List;
+import java.util.ArrayList;
 
 public class RNAirBridgeModule extends ReactContextBaseJavaModule {
 
@@ -71,8 +84,9 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void sendSignout(ReadableMap params) {
-    SignOutEvent event = new SignOutEvent()
-    AirBridge.getTracker().sendEvent(event);
+    // Airbridge does not implement yet.
+    // SignOutEvent event = new SignOutEvent();
+    // AirBridge.getTracker().send(event);
   }
 
   @ReactMethod
@@ -84,33 +98,33 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void sendViewProductList(String listId, ReadableArray products) {
     ProductListViewEvent event = new ProductListViewEvent(listId, this.getProducts(products));
-    AirBridge.getTracker().sendEvent(event);
+    AirBridge.getTracker().send(event);
   }
 
   @ReactMethod
   public void sendViewProductDetail(ReadableArray product) {
     ProductDetailsViewEvent event = new ProductDetailsViewEvent(this.getProducts(product));
-    AirBridge.getTracker().sendEvent(event);
+    AirBridge.getTracker().send(event);
   }
 
   @ReactMethod
   public void sendViewSearchResult(String query, ReadableArray products) {
     SearchResultViewEvent event = new SearchResultViewEvent(query, this.getProducts(products));
-    AirBridge.getTracker().sendEvent(event);
+    AirBridge.getTracker().send(event);
   }
 
   @ReactMethod
   public void sendAddProductToCart(String cartId, ReadableArray products, ReadableMap params) {
     AddedToCartEvent event = new AddedToCartEvent(cartId, this.getProducts(products));
     this.setEventMethod(event, params);
-    AirBridge.getTracker().sendEvent(event);
+    AirBridge.getTracker().send(event);
   }
 
   @ReactMethod
   public void sendCompleteOrder(ReadableArray products, ReadableMap params) {
     PurchaseEvent event = new PurchaseEvent(this.getProducts(products));
     this.setEventMethod(event, params);
-    AirBridge.getTracker().sendEvent(event);
+    AirBridge.getTracker().send(event);
   }
 
   @ReactMethod
@@ -163,9 +177,9 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
   }
 
   private List<Product> getProducts(ReadableArray products) {
-    List<Product> list;
+    List<Product> list = new ArrayList();
     for (int i = 0; i < products.size(); i++) {
-      ReadableMap row = products.get(i);
+      ReadableMap row = products.getMap(i);
       list.add(this.getProduct(row));
     }
 
@@ -174,12 +188,12 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
 
   private Product getProduct(ReadableMap product) {
     Product data = new Product();
-    data.setProductId(product.getString('productId'));
-    data.setName(product.getString('name'));
-    data.setCurrency(product.getString('currency'));
-    data.setPrice(product.getDouble('price'));
-    data.setQuantity(product.getDouble('quantity'));
-    data.setPositionInList(product.getDouble('orderPosition'));
+    data.setProductId(product.getString("productId"));
+    data.setName(product.getString("name"));
+    data.setCurrency(product.getString("currency"));
+    data.setPrice(product.getInt("price"));
+    data.setQuantity(product.getInt("quantity"));
+    data.setPositionInList(product.getInt("orderPosition"));
     return data;
   }
 }
