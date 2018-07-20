@@ -8,5 +8,6 @@
 @interface RNAirBridge : NSObject <RCTBridgeModule>
 
 - (ABEcommerceEvent *) getEcommerceEvent:(NSArray *)products;
-
+- (void) setUserProperties:(ABUser *)user params:(NSDictionary *_Nullable)params;
+- (void) setEventProperties:(ABEcommerceEvent *)ecommerceEvent params:(NSDictionary *)params;
 @end

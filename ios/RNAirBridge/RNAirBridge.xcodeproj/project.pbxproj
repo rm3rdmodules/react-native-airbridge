@@ -9,14 +9,12 @@
 /* Begin PBXBuildFile section */
 		5333C9BE20FB867A00ECC5D7 /* RNAirBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 5333C9BD20FB867A00ECC5D7 /* RNAirBridge.h */; };
 		5333C9C020FB867A00ECC5D7 /* RNAirBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5333C9BF20FB867A00ECC5D7 /* RNAirBridge.m */; };
-		537614A320FCCAC200D858C1 /* AirBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537614A220FCCAC200D858C1 /* AirBridge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5333C9BA20FB867A00ECC5D7 /* libRNAirBridge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAirBridge.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5333C9BD20FB867A00ECC5D7 /* RNAirBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAirBridge.h; sourceTree = "<group>"; };
 		5333C9BF20FB867A00ECC5D7 /* RNAirBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAirBridge.m; sourceTree = "<group>"; };
-		537614A220FCCAC200D858C1 /* AirBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AirBridge.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,7 +22,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				537614A320FCCAC200D858C1 /* AirBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,7 +47,6 @@
 		5333C9BC20FB867A00ECC5D7 /* RNAirBridge */ = {
 			isa = PBXGroup;
 			children = (
-				537614A220FCCAC200D858C1 /* AirBridge.framework */,
 				5333C9BD20FB867A00ECC5D7 /* RNAirBridge.h */,
 				5333C9BF20FB867A00ECC5D7 /* RNAirBridge.m */,
 			);
@@ -251,7 +247,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RNAirBridge",
+					"$(PROJECT_DIR)/../../../../ios/Pods/AirBridge/**",
 				);
+				NEW_SETTING = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -266,7 +264,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RNAirBridge",
+					"$(PROJECT_DIR)/../../../../ios/Pods/AirBridge/**",
 				);
+				NEW_SETTING = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

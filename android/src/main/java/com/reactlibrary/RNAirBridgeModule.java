@@ -44,46 +44,83 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void setUserId(String userId) {
+  public void setUser(String userId) {
 
     AirBridge.getTracker().setUserId(userId);
   }
 
   @ReactMethod
-  public void setUserEmail(String email) {
+  public void setEmail(String email) {
 
     AirBridge.getTracker().setUserEmail(email);
   }
 
   @ReactMethod
-  public void SignUpEvent(ReadableMap params) {
+  public void sendSignup(ReadableMap params) {
     SignUpEvent event = new SignUpEvent();
-    this._sendEvent(event, params);
+    this.setEventMethod(event, params);
     AirBridge.getTracker().send(event);
   }
 
   @ReactMethod
-  public void SignInEvent(ReadableMap params) {
+  public void sendSignin(ReadableMap params) {
     SignInEvent event = new SignInEvent();
-    this._sendEvent(event, params);
+    this.setEventMethod(event, params);
     AirBridge.getTracker().send(event);
   }
 
   @ReactMethod
-  public void HomeViewEvent(ReadableMap params) {
+  public void sendSignout(ReadableMap params) {
+    SignOutEvent event = new SignOutEvent()
+    AirBridge.getTracker().sendEvent(event);
+  }
+
+  @ReactMethod
+  public void sendViewHome(ReadableMap params) {
     HomeViewEvent event = new HomeViewEvent();
     AirBridge.getTracker().send(event);
   }
 
+  @ReactMethod
+  public void sendViewProductList(String listId, ReadableArray products) {
+    ProductListViewEvent event = new ProductListViewEvent(listId, this.getProducts(products));
+    AirBridge.getTracker().sendEvent(event);
+  }
 
   @ReactMethod
-  public void GoalEvent(String category, ReadableMap params) {
+  public void sendViewProductDetail(ReadableArray product) {
+    ProductDetailsViewEvent event = new ProductDetailsViewEvent(this.getProducts(product));
+    AirBridge.getTracker().sendEvent(event);
+  }
+
+  @ReactMethod
+  public void sendViewSearchResult(String query, ReadableArray products) {
+    SearchResultViewEvent event = new SearchResultViewEvent(query, this.getProducts(products));
+    AirBridge.getTracker().sendEvent(event);
+  }
+
+  @ReactMethod
+  public void sendAddProductToCart(String cartId, ReadableArray products, ReadableMap params) {
+    AddedToCartEvent event = new AddedToCartEvent(cartId, this.getProducts(products));
+    this.setEventMethod(event, params);
+    AirBridge.getTracker().sendEvent(event);
+  }
+
+  @ReactMethod
+  public void sendCompleteOrder(ReadableArray products, ReadableMap params) {
+    PurchaseEvent event = new PurchaseEvent(this.getProducts(products));
+    this.setEventMethod(event, params);
+    AirBridge.getTracker().sendEvent(event);
+  }
+
+  @ReactMethod
+  public void setCustomEvent(String category, ReadableMap params) {
     GoalEvent event = new GoalEvent(category);
-    this._sendEvent(event, params);
+    this.setEventMethod(event, params);
     AirBridge.getTracker().send(event);
   }
 
-  private void _sendEvent(Object event, ReadableMap params) {
+  private void setEventMethod(Object event, ReadableMap params) {
     try {
 
       ReadableMapKeySetIterator iterator = params.keySetIterator();
@@ -123,5 +160,26 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
     catch(Exception e) {
       Log.e("RNAirBidgeModule", "Exception: " + Log.getStackTraceString(e));
     }
+  }
+
+  private List<Product> getProducts(ReadableArray products) {
+    List<Product> list;
+    for (int i = 0; i < products.size(); i++) {
+      ReadableMap row = products.get(i);
+      list.add(this.getProduct(row));
+    }
+
+    return list;
+  }
+
+  private Product getProduct(ReadableMap product) {
+    Product data = new Product();
+    data.setProductId(product.getString('productId'));
+    data.setName(product.getString('name'));
+    data.setCurrency(product.getString('currency'));
+    data.setPrice(product.getDouble('price'));
+    data.setQuantity(product.getDouble('quantity'));
+    data.setPositionInList(product.getDouble('orderPosition'));
+    return data;
   }
 }
