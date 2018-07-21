@@ -13,7 +13,7 @@
   "keywords": [
     "react-native",
     "airbridge",
-    "air-bridge",
+    "air-bridge"
   ],
   "license": "MIT",
   "main": "index",
@@ -21,7 +21,7 @@
     {
       "name": "Jeong Juwon",
       "email": "2jw0718@gmail.com"
-    },
+    }
   ],
   "name": "react-native-airbridge",
   "repository": {
