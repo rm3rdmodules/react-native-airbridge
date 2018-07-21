@@ -56,7 +56,7 @@ $ pod install
 * [x] [Home Screen View](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#homeview)
 * [x] [Product List](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#productlistview)
 * [x] [Search Result View](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#searchresultview)
-* [x] [Product View](ttps://docs.airbridge.io/ko/developer_guide/1-1-2.html#productdetailsview)
+* [x] [Product View](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#productdetailsview)
 * [x] [Add To Cart](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#addedtocart)
 * [x] [Purchasing](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#purchase)
 * [x] [Signout](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#signout)
