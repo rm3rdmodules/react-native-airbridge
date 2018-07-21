@@ -1,14 +1,33 @@
-{
-  "name": "react-native-airbridge",
-  "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+"author": {
+  "name": "Jeong Juwon",
+  "email": "2jw0718@gmail.com"
+},
+"bugs": {
+  "url": "https://github.com/jeongjuwon/react-native-airbridge/issues"
+},
+"dependencies": {},
+"description": "This package support airbridge's event features for react native",
+"devDependencies": {},
+"homepage": "https://github.com/jeongjuwon/react-native-airbridge",
+"keywords": [
+  "react-native",
+  "airbridge",
+  "air-bridge",
+],
+"license": "MIT",
+"main": "index",
+"maintainers": [
+  {
+    "name": "Jeong Juwon",
+    "email": "2jw0718@gmail.com"
   },
-  "keywords": [
-    "react-native"
-  ],
-  "author": "Juwon <2jw0718@gmail.com>",
-  "license": "MIT"
-}
+],
+"name": "react-native-airbridge",
+"repository": {
+  "type": "git",
+  "url": "git+https://github.com/jeongjuwon/react-native-airbridge.git"
+},
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
+"version": "1.0.0"
