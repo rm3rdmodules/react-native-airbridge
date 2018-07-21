@@ -1,5 +1,6 @@
 
 import { NativeModules, Platform } from 'react-native';
+
 const { RNAirBridge } = NativeModules;
 
 export default {
@@ -84,7 +85,7 @@ export default {
       currency: String,
       orderPosition: Integer
     }>) {
-      RNAirBridge.sendViewProductList(query, products);
+      RNAirBridge.sendViewSearchResult(query, products);
   },
   sendAddProductToCart(
     cartId: String,
@@ -102,7 +103,9 @@ export default {
     }) {
       Platform.select({
         ios: () => {
-          RNAirBridge.sendAddProductToCart(products, { ...params, ...cardId });
+          delete params.currency;
+          delete params.totalValue;
+          RNAirBridge.sendAddProductToCart(products, params);
         },
         android: () => {
           RNAirBridge.sendAddProductToCart(cartId, products, params);
@@ -121,10 +124,18 @@ export default {
     params: {
       isInAppPurchase?: Boolean,
       eventValue?: String,
-      currency?: String,
-      transactionID?: String
+      transactionID?: String,
+      currency?: String
     }) {
-    RNAirBridge.sendCompleteOrder(products, params);
+      Platform.select({
+        ios: () => {
+          delete params.currency;
+          RNAirBridge.sendCompleteOrder(products, params);
+        },
+        android: () => {
+          RNAirBridge.sendCompleteOrder(products, params);
+        },
+      })();
   },
   sendCustomEvent(eventName, action, label, value, customAttributes) {
     Platform.select({

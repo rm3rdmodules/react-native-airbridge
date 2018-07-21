@@ -20,7 +20,7 @@ $ cd ios/
 $ pod install
 ```
 
-### Mostly automatic installation
+### Automatic installation
 
 `$ react-native link react-native-airbridge`
 
@@ -49,12 +49,24 @@ $ pod install
     ```
       compile project(':react-native-airbridge')
     ```
+## Supported Events
+
+* [x] [Signup](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#signup)
+* [x] [Signin](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#signin)
+* [x] [Home Screen View](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#homeview)
+* [x] [Product List](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#productlistview)
+* [x] [Search Result View](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#searchresultview)
+* [x] [Product View](ttps://docs.airbridge.io/ko/developer_guide/1-1-2.html#productdetailsview)
+* [x] [Add To Cart](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#addedtocart)
+* [x] [Purchasing](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#purchase)
+* [x] [Signout](https://docs.airbridge.io/ko/developer_guide/1-1-2.html#signout)
 
 ## Usage
 
 ```javascript
 import AirBridge from "react-native-airbridge";
 
+// Your products
 const products = [{
   productId: 'prd-1',
   name: 'product-name1',
@@ -70,14 +82,32 @@ const products = [{
   currency: 'KRW',
   orderPosition: 2,
 }];
+
+// Initialize
 AirBridge.init('your eng app name', 'airbridge token', false);
-AirBridge.sendSignin('2jw0718', '2jw0718@gmail.com');
-AirBridge.sendSignup('2jw0718', '2jw0718@gmail.com');
+
+// Signin
+AirBridge.sendSignin('userId', 'userEmail');
+
+// Signup
+AirBruserIe.sendSignup('userId', 'userEmail');
+
+// Home Screen View
 AirBridge.sendViewHome();
+
+// Product List
 AirBridge.sendViewProductList('prd-list-id', products);
+
+// Product View
 AirBridge.sendViewProductDetail(products);
+
+// Search Result View
 AirBridge.sendViewSearchResult('search query', products);
+
+// Search Result View
 AirBridge.sendAddProductToCart('cart_id', products, { totalValue: 3000, currency: 'KRW' });
+
+// Purchasing
 AirBridge.sendCompleteOrder(products, {
   isInAppPurchase: false,
   transactionID: '123456789',
