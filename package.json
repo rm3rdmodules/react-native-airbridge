@@ -3,12 +3,12 @@
   "email": "2jw0718@gmail.com"
 },
 "bugs": {
-  "url": "https://github.com/jeongjuwon/react-native-airbridge/issues"
+  "url": "https://github.com/rm3rdmodules/react-native-airbridge/issues"
 },
 "dependencies": {},
 "description": "This package support airbridge's event features for react native",
 "devDependencies": {},
-"homepage": "https://github.com/jeongjuwon/react-native-airbridge",
+"homepage": "https://github.com/rm3rdmodules/react-native-airbridge",
 "keywords": [
   "react-native",
   "airbridge",
@@ -25,7 +25,7 @@
 "name": "react-native-airbridge",
 "repository": {
   "type": "git",
-  "url": "git+https://github.com/jeongjuwon/react-native-airbridge.git"
+  "url": "git+https://github.com/rm3rdmodules/react-native-airbridge.git"
 },
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1"
