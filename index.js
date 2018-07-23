@@ -140,10 +140,10 @@ export default {
   sendCustomEvent(eventName: string, action: string, label: string, value: number, customAttributes: object) {
     Platform.select({
       ios: () => {
-        RNAirBridge.setCustomEvent(eventName, action, label, value, customAttributes);
+        RNAirBridge.sendCustumEvent(eventName, action, label, value, customAttributes);
       },
       android: () => {
-        RNAirBridge.setCustomEvent(eventName, {
+        RNAirBridge.sendCustumEvent(eventName, {
           action,
           label,
           value,

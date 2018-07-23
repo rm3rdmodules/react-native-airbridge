@@ -128,7 +128,7 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void setCustomEvent(String category, ReadableMap params) {
+  public void sendCustumEvent(String category, ReadableMap params) {
     GoalEvent event = new GoalEvent(category);
     this.setEventMethod(event, params);
     AirBridge.getTracker().send(event);
