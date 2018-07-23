@@ -8,7 +8,9 @@
   },
   "dependencies": {},
   "description": "This package support airbridge's event features for react native",
-  "devDependencies": {},
+  "devDependencies": {
+    "typescript": "^2.9.2"
+  },
   "homepage": "https://github.com/rm3rdmodules/react-native-airbridge",
   "keywords": [
     "react-native",
@@ -29,7 +31,8 @@
     "url": "git+https://github.com/rm3rdmodules/react-native-airbridge.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "flow": "flow index.js"
   },
   "version": "1.0.0"
 }

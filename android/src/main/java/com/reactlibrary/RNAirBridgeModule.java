@@ -149,7 +149,8 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
 
             break;
           case Boolean:
-
+            method = event.getClass().getMethod(methodName, Boolean.class);
+            method.invoke(event, params.getBoolean(key));
             break;
           case Number:
             // Can be int or double.
@@ -161,10 +162,12 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
             method.invoke(event, params.getString(key));
             break;
           case Map:
-
+            method = event.getClass().getMethod(methodName, Object.class);
+            method.invoke(event, params.getMap(key));
             break;
           case Array:
-
+            method = event.getClass().getMethod(methodName, Array.class);
+            method.invoke(event, params.getArray(key));
             break;
           default:
             throw new IllegalArgumentException("Could not convert object with key: " + key + ".");

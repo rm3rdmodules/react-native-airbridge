@@ -114,4 +114,12 @@ AirBridge.sendCompleteOrder(products, {
   eventValue: 3000,
   currency: 'KRW',
 });
+
+// Custom Event
+AirBridge.sendCustomEvent('category', {
+  action: 'action',
+  label: 'label',
+  value: 3412,
+  customAttribute: products[0]
+});
 ```

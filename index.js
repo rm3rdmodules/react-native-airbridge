@@ -4,13 +4,13 @@ import { NativeModules, Platform } from 'react-native';
 const { RNAirBridge } = NativeModules;
 
 export default {
-  init(appEngName: String, appToken: String, facebookSDKInstalled: Boolean) {
+  init(appEngName: string, appToken: string, facebookSDKInstalled: Boolean) {
     Platform.select({
       ios: () => { RNAirBridge.init(appEngName, appToken, facebookSDKInstalled); },
       android: () => { RNAirBridge.init(appEngName, appToken); },
     })();
   },
-  sendSignup(userId: String, userEmail: String) {
+  sendSignup(userId: string, userEmail: string) {
     Platform.select({
       ios: () => {
         RNAirBridge.sendSignup({
@@ -26,7 +26,7 @@ export default {
       },
     })();
   },
-  sendSignin(userId: String, userEmail: String) {
+  sendSignin(userId: string, userEmail: string) {
     Platform.select({
       ios: () => {
         RNAirBridge.sendSignin({
@@ -46,14 +46,14 @@ export default {
     RNAirBridge.sendViewHome();
   },
   sendViewProductList(
-    listId: String,
+    listId: string,
     products: Array<{
-      productId: String,
-      name: String,
-      price: Integer,
-      quantity: Integer,
-      currency: String,
-      orderPosition: Integer
+      productId: string,
+      name: string,
+      price: number,
+      quantity: number,
+      currency: string,
+      orderPosition: number
     }>) {
       Platform.select({
         ios: () => {
@@ -66,40 +66,40 @@ export default {
   },
   sendViewProductDetail(
     products: Array<{
-      productId: String,
-      name: String,
-      price: Integer,
-      quantity: Integer,
-      currency: String,
-      orderPosition: Integer
+      productId: string,
+      name: string,
+      price: number,
+      quantity: number,
+      currency: string,
+      orderPosition: number
     }>) {
       RNAirBridge.sendViewProductDetail(products);
   },
   sendViewSearchResult(
-    query: String,
+    query: string,
     products: Array<{
-      productId: String,
-      name: String,
-      price: Integer,
-      quantity: Integer,
-      currency: String,
-      orderPosition: Integer
+      productId: string,
+      name: string,
+      price: number,
+      quantity: number,
+      currency: string,
+      orderPosition: number
     }>) {
       RNAirBridge.sendViewSearchResult(query, products);
   },
   sendAddProductToCart(
-    cartId: String,
+    cartId: string,
     products: Array<{
-      productId: String,
-      name: String,
-      price: Integer,
-      quantity: Integer,
-      currency: String,
-      orderPosition: Integer
+      productId: string,
+      name: string,
+      price: number,
+      quantity: number,
+      currency: string,
+      orderPosition: number
     }>,
     params: {
-      totalValue?: Number,
-      currency?: String
+      totalValue?: number,
+      currency?: string
     }) {
       Platform.select({
         ios: () => {
@@ -114,18 +114,18 @@ export default {
   },
   sendCompleteOrder(
     products: Array<{
-      productId: String,
-      name: String,
-      price: Integer,
-      quantity: Integer,
-      currency: String,
-      orderPosition: Integer
+      productId: string,
+      name: string,
+      price: number,
+      quantity: number,
+      currency: string,
+      orderPosition: number
     }>,
     params: {
       isInAppPurchase?: Boolean,
-      eventValue?: String,
-      transactionID?: String,
-      currency?: String
+      eventValue?: string,
+      transactionID?: string,
+      currency?: string
     }) {
       Platform.select({
         ios: () => {
@@ -137,13 +137,13 @@ export default {
         },
       })();
   },
-  sendCustomEvent(eventName, action, label, value, customAttributes) {
+  sendCustomEvent(eventName: string, action: string, label: string, value: number, customAttributes: object) {
     Platform.select({
       ios: () => {
-        RNAirBridge.sendAddProductToCart(eventName, action, label, value, customAttributes);
+        RNAirBridge.setCustomEvent(eventName, action, label, value, customAttributes);
       },
       android: () => {
-        RNAirBridge.sendAddProductToCart(eventName, {
+        RNAirBridge.setCustomEvent(eventName, {
           action,
           label,
           value,
