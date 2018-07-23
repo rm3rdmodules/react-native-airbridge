@@ -166,7 +166,7 @@ public class RNAirBridgeModule extends ReactContextBaseJavaModule {
             method.invoke(event, params.getMap(key));
             break;
           case Array:
-            method = event.getClass().getMethod(methodName, Array.class);
+            method = event.getClass().getMethod(methodName, List.class);
             method.invoke(event, params.getArray(key));
             break;
           default:

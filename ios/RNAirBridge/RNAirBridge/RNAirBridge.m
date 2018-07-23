@@ -125,7 +125,7 @@ RCT_EXPORT_METHOD(sendCompleteOrder:(NSArray *)products params:(NSDictionary *)p
     [ecommerceEvent sendCompleteOrder];
 }
 
-RCT_EXPORT_METHOD(sendCustumEvent:(NSString *)eventName action:(NSString *)action label:(NSString *)label value:(NSNumber *)value customAttributes:(NSDictionary *_Nullable)customAttributes)
+RCT_EXPORT_METHOD(sendCustumEvent:(NSString *)eventName action:(NSString *)action label:(NSString *)label value:(NSNumber * _Nonnull)value customAttributes:(NSDictionary * _Nullable)customAttributes)customAttributes)
 {
     [[AirBridge instance]
      goalWithCategory:eventName
